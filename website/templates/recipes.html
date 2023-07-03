@@ -1,0 +1,75 @@
+{% extends "base.html" %} 
+{% block title %}Found Recipes{% endblock %} 
+
+{% block styles%}
+<style>
+    .up{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .up h1{
+        margin:5%;
+    }
+
+    .book{
+        display: block;
+        background-color: #f7a072;
+        color: #f9f7f3;
+        text-decoration: none;
+        border-radius: 10px;
+        padding: 10px;
+        margin: auto;
+        margin-bottom: 1%;
+        width: 17%;
+        font-weight: bold;
+        font-size: 120%;
+    }
+
+    .book:hover{
+        background-color: #d0a070;
+    }
+
+    .error{
+        color: #660000;
+    }
+
+    .recipes{
+        margin: auto;
+        text-align: center;
+    }
+</style>
+
+{%endblock%}
+
+{% block content %}
+<div class='recipes'>
+    <div class = 'up'>
+
+        <a href = '/book' class = 'back'>< Back</a>
+        <h1>Found Recipes</h1>
+        
+    </div>
+    <div class = 'recipes'>
+        {% if ing %}
+            <button type='button' class='book' onclick="redirectToProgrammingHead('/recipe'); submitForm('random');">Random</button>
+            {% for i in ing %}
+            <button type='button' class='book' onclick="redirectToProgrammingHead('/recipe'); submitForm('{{i}}');">{{ i }}</button>
+            {% endfor %}
+            <form id="myForm" method='POST' action="/recipe">
+                <input type="hidden" id="hidden" name="name">
+            </form>
+
+            <script>
+                function submitForm(value) {
+                    document.getElementById("hidden").value = value;
+                    document.getElementById("myForm").submit();
+                }
+            </script>
+        {%else%}
+        <h1 class= 'error'>{{error}} GO BACK</h1>
+        {%endif%}
+    </div>
+</div>
+{% endblock %}
