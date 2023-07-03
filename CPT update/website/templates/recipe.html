@@ -1,0 +1,34 @@
+{% extends "base.html" %} 
+{% block title %}Recipe{% endblock %} 
+
+{% block styles%}
+<style>
+    .text{
+        width: 60%;
+        margin: auto;
+    }
+    .top{
+        display: flex;
+    }
+
+    .back{
+        font-size: 85%;
+    }
+</style>
+{%endblock%}
+
+{% block content %}
+<div class = 'text'>
+    <div  class = 'top'>
+        <a href = '/book' class = 'back'>< Back</a>
+        <h2 class = 'title'>{{text[0]}}</h2>
+    </div>
+    
+    {% for i in text[1:] %}
+    <p class = 'recipe'>{{i}}</p>
+    {%endfor%}
+</div>
+{% endblock %}
+
+
+
